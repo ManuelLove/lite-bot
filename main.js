@@ -1,4 +1,4 @@
-const conn = {}; // Si `conn` no está definido, agrégalo
+let conn = {}; // Si `conn` no está definido, agrégalo
 const handlerAcertijoResp = require('./plugins/fun-acertijo-resp.js');
 conn.before = async function (m) {
   handlerAcertijoResp.before(m, { conn });
