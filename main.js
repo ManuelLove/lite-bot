@@ -1355,17 +1355,17 @@ case 'ytsearch': {
       nativeFlowMessage: {
         buttons: [
           {
-            "name": "cta_url",
+            "name": "cta_copy",
             "buttonParamsJson": JSON.stringify({
-            "display_text": "📺 Ver Video",
-            "url": `https://api.siputzx.my.id/api/d/ytmp4?url=${encodeURIComponent(video.url)}`
+            "display_text": "📺 Descargar MP4"",
+            "copy_code": `${prefix}ytmp3 ${video.url}`
             })
           },
           {
             "name": "cta_copy",
             "buttonParamsJson": JSON.stringify({
-            "display_text": "📋 Copiar URL",
-            "copy_code": `https://api.siputzx.my.id/api/d/ytmp4?url=${encodeURIComponent(video.url)}`
+            "display_text": "🎵 Descargar MP3",
+            "copy_code": `${prefix}ytmp4 ${video.url}`
             })
           }
         ]
