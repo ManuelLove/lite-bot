@@ -1328,14 +1328,16 @@ return;
 //ARRANCA LA DIVERSIÓN   
 switch (prefix && command) {
 case 'ytsearch': {
-  updatePopularCommand(command);
+  updatePopularCommand(command); // Mencatat command
   if (!text) return m.reply(`Ejemplo : ${prefix + command} historia de anime`);
-  if (!firely(m, '⏳ Tratamiento..')) return;
+  if (!firely(m, '⏳ Tratamiento..')) return; // Jika limit habis, proses berhenti di sini
 
   try {
+    // Cari hasil di YouTube menggunakan API
     let search = await yts(text);
     if (!search.all.length) return m.reply("¡No se encontraron resultados de búsqueda!");
 
+    // Batasi hasil pencarian ke 5 item teratas dan siapkan carousel card
     const carouselCards = await Promise.all(search.all.slice(0, 5).map(async (video, index) => ({
       header: {
         title: `Resultados ${index + 1}`,
@@ -1345,34 +1347,32 @@ case 'ytsearch': {
         }, { upload: conn.waUploadToServer })).imageMessage
       },
       body: {
-        text: `🎥 *${video.title}*
-👁 *Vistas:* ${video.views}
-⏱ *Duración:* ${video.timestamp}
-📆 *Subido:* ${video.ago}`
-      },
+        text: `🎥 *${video.title}*\n👁 *Vistas:* ${video.views}\n⏱ *Duración:* ${video.timestamp}\n📆 *Subido:* ${video.ago}\n📝 *Url:* ${video.url}`
+            },
       footer: {
-        text: `Elige una opción para descargar:`
+        text: `Haga clic en el botón a continuación para ver o copiar el enlace.`
       },
       nativeFlowMessage: {
         buttons: [
           {
-            "name": "cta_mp3",
+            "name": "cta_url",
             "buttonParamsJson": JSON.stringify({
-              "display_text": "🎵 Descargar MP3",
-              "url": `https://wa.me/?text=${encodeURIComponent(prefix + "ytmp3 " + video.url)}`
+            "display_text": "📺 Ver Video",
+            "url": `${prefix}ytmp4 ${video.url}`
             })
           },
           {
-            "name": "cta_mp4",
+            "name": "cta_copy",
             "buttonParamsJson": JSON.stringify({
-              "display_text": "📺 Descargar MP4",
-              "url": `https://wa.me/?text=${encodeURIComponent(prefix + "ytmp4 " + video.url)}`
+            "display_text": "📋 Copiar URL",
+            "copy_code": `${prefix}ytmp4 ${video.url}`
             })
           }
         ]
       }
     })));
 
+    // Buat pesan carousel
     const carouselMessage = generateWAMessageFromContent(m.chat, {
       viewOnceMessage: {
         message: {
@@ -1385,7 +1385,7 @@ case 'ytsearch': {
               text: `🔎 *Resultados de búsqueda de YouTube para:* _${text}_`
             },
             footer: {
-              text: `Selecciona una opción para descargar.`
+              text: `Bot de YouTube de Techfix Solutions`
             },
             header: {
               hasMediaAttachment: false
@@ -1398,14 +1398,15 @@ case 'ytsearch': {
       }
     }, {});
 
+    // Kirim pesan carousel
     await conn.relayMessage(m.chat, carouselMessage.message, {
       messageId: carouselMessage.key.id
     });
 
   } catch (e) {
-    console.error("Error en ytsearch:", e);
+    console.error("Error al procesar la solicitud de búsqueda de YouTube:", e);
     await conn.sendMessage(m.chat, {
-      text: "❌ Hubo un problema al procesar la búsqueda. Inténtalo de nuevo."
+      text: "❌ Se produjo un error al procesar una búsqueda en YouTube. Por favor inténtalo de nuevo."
     }, { quoted: m });
   }
 }
