@@ -1358,7 +1358,7 @@ case 'ytsearch': {
             "name": "cta_url",
             "buttonParamsJson": JSON.stringify({
             "display_text": "📺 Ver Video",
-            "url": `https://wa.me/?text=${encodeURIComponent(prefix + "ytmp3 " + video.url)}`
+            "url": `https://api.siputzx.my.id/api/d/ytmp4?url=${encodeURIComponent(video.url)}`
             })
           },
           {
