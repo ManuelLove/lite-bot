@@ -129,9 +129,9 @@ global.randomImage = pickRandom([img, img1, img2, img3, img4, img5, img6, img7, 
 
 
 
-global.imagen1 = fs.readFileSync('./media/menu3.jpg')
+global.imagen1 = fs.readFileSync('./media/menu.jpg')
 global.imagen2 = 'https://i.ibb.co/7GjhqZ7/20241129-183639.jpg'
-global.imagen3 = fs.readFileSync('./media/menu.jpg')
+global.imagen3 = fs.readFileSync('./media/menu3.jpg')
 global.noperfil = fs.readFileSync('./media/sinfoto.jpg')
 global.verificar = fs.readFileSync('./media/menu2.jpg')
 
