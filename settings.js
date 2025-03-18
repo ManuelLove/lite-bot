@@ -14,9 +14,9 @@ const axios = require('axios')
 //---------[ PROPIETARIO/OWNER ]---------
 global.owner = [
     ["573012686632", "Owner", true],
-    ["573012686632"],
-    ["573012686632"],
-    ["573012686632"]
+    ["595984838201"],
+    ["51918534156"],
+    ["123456789"]
 ]
 global.mods = []
 global.premium = []
@@ -49,7 +49,7 @@ global.prefix = [` `]
 //---------[ APIS GLOBAL ]---------
 global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({...query, ...(apikeyqueryname ? {[apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name]} : {})})) : '');
 global.apis = 'https://deliriussapi-oficial.vercel.app'
-global.eliasarapi = 'EliasarYT'
+global.eliasarapi = 'ManuVPS'
 global.keysZens = ['LuOlangNgentot', 'c2459db922', '37CC845916', '6fb0eff124', 'hdiiofficial', 'fiktod', 'BF39D349845E', '675e34de8a', '0b917b905e6f'];
 global.keysxxx = keysZens[Math.floor(keysZens.length * Math.random())];
 global.keysxteammm = ['29d4b59a4aa687ca', '5LTV57azwaid7dXfz5fzJu', 'cb15ed422c71a2fb', '5bd33b276d41d6b4', 'HIRO', 'kurrxd09', 'ebb6251cc00f9c63'];
@@ -108,7 +108,8 @@ global.author = `{
   "autor": "ManuVPS",
   "version": "1.2",
   "creador": "ManuVPS"
-}`
+}
+`
 
 //-----------------IMAGENES---------
 global.menuimg = "https://i.ibb.co/kgCxm15P/IMG-20250314-WA0023.png"
