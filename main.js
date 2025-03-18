@@ -1336,27 +1336,57 @@ case 'ytsearch': {
     let search = await yts(text);
     if (!search.all.length) return m.reply("¡No se encontraron resultados de búsqueda!");
 
-    for (let video of search.all.slice(0, 5)) {
-        let message = `🎥 *${video.title}*
+    const carouselCards = await Promise.all(search.all.slice(0, 5).map(async (video, index) => ({
+      header: {
+        title: `Resultados ${index + 1}`,
+        hasMediaAttachment: true,
+        imageMessage: (await generateWAMessageContent({
+          image: { url: video.thumbnail }
+        }, { upload: conn.waUploadToServer })).imageMessage
+      },
+      body: {
+        text: `🎥 *${video.title}*
 👁 *Vistas:* ${video.views}
 ⏱ *Duración:* ${video.timestamp}
-📆 *Subido:* ${video.ago}`;
+📆 *Subido:* ${video.ago}`
+      },
+      footer: {
+        text: `Elige una opción para descargar:`
+      },
+      buttons: [
+        {buttonId: `${prefix}ytmp3 ${video.url}`, buttonText: {displayText: "🎵 Descargar MP3"}, type: 1},
+        {buttonId: `${prefix}ytmp4 ${video.url}`, buttonText: {displayText: "📺 Descargar MP4"}, type: 1}
+      ]
+    })));
 
-        let buttons = [
-            {buttonId: `${prefix}ytmp3 ${video.url}`, buttonText: {displayText: "🎵 Descargar MP3"}, type: 1},
-            {buttonId: `${prefix}ytmp4 ${video.url}`, buttonText: {displayText: "📺 Descargar MP4"}, type: 1}
-        ];
+    const carouselMessage = generateWAMessageFromContent(m.chat, {
+      viewOnceMessage: {
+        message: {
+          messageContextInfo: {
+            deviceListMetadata: {},
+            deviceListMetadataVersion: 2
+          },
+          interactiveMessage: proto.Message.InteractiveMessage.fromObject({
+            body: {
+              text: `🔎 *Resultados de búsqueda de YouTube para:* _${text}_`
+            },
+            footer: {
+              text: `Selecciona una opción para descargar.`
+            },
+            header: {
+              hasMediaAttachment: false
+            },
+            carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({
+              cards: carouselCards
+            })
+          })
+        }
+      }
+    }, {});
 
-        let buttonMessage = {
-            image: { url: video.thumbnail },
-            caption: message,
-            footer: "🎵 Elige una opción para descargar:",
-            buttons: buttons,
-            headerType: 4
-        };
-
-        await conn.sendMessage(m.chat, buttonMessage, { quoted: m });
-    }
+    await conn.relayMessage(m.chat, carouselMessage.message, {
+      messageId: carouselMessage.key.id
+    });
 
   } catch (e) {
     console.error("Error en ytsearch:", e);
