@@ -1353,10 +1353,24 @@ case 'ytsearch': {
       footer: {
         text: `Elige una opción para descargar:`
       },
-      buttons: [
-        {buttonId: `${prefix}ytmp3 ${video.url}`, buttonText: {displayText: "🎵 Descargar MP3"}, type: 1},
-        {buttonId: `${prefix}ytmp4 ${video.url}`, buttonText: {displayText: "📺 Descargar MP4"}, type: 1}
-      ]
+      nativeFlowMessage: {
+        buttons: [
+          {
+            "name": "cta_mp3",
+            "buttonParamsJson": JSON.stringify({
+              "display_text": "🎵 Descargar MP3",
+              "url": `https://wa.me/?text=${encodeURIComponent(prefix + "ytmp3 " + video.url)}`
+            })
+          },
+          {
+            "name": "cta_mp4",
+            "buttonParamsJson": JSON.stringify({
+              "display_text": "📺 Descargar MP4",
+              "url": `https://wa.me/?text=${encodeURIComponent(prefix + "ytmp4 " + video.url)}`
+            })
+          }
+        ]
+      }
     })));
 
     const carouselMessage = generateWAMessageFromContent(m.chat, {
