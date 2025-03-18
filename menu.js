@@ -44,7 +44,7 @@ let submenu = ` `
 let descargar = `꧁✦  *📥 Menú de Descargas 📥*  ✦꧂
 
 ┏━━━━━🔍 Búscador━━━━━┓
-┃ ➫ ❏ ${prefix}ytsearch _(YT Nombre)_  
+┃ ➫ ❏ ${prefix}ytbuscar _(YT Nombre)_  
 ┃ ➫ ❏ ${prefix}ytios  _(YT iOS Nombre)_  
 ┗━━━━━━━━━━━━━━━━━━┛
 
@@ -542,7 +542,7 @@ let menu = `╔━━━▣━━◤ 𝘼𝙉𝙎𝙄◢━━▣━━━╗
 ◆━━━━━━◆❃◆━━━━━━◆
 
 *╭─╮─᤻─᳒─᤻᳒᯽⃟ᰳᰬᰶ┈*⃐🔄ｄｅｓｃａｒｇａ*️⃟ᬽ፝֟━*
-┃ ➫ ❏ ${prefix}ytsearch _(YT Nombre)_
+┃ ➫ ❏ ${prefix}ytbuscar _(YT Nombre)_
 ┃ ➫ ❏ ${prefix}ytmp3   _(URL música)_
 ┃ ➫ ❏ ${prefix}ytmp4  _(URL video)_
 ┃ ➫ ❏ ${prefix}ytios  _(YT iOS Nombre)_
