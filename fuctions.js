@@ -1298,7 +1298,7 @@ return m
 }
 
 function ucapan() {
-  let time = moment.tz("America/Bogota").format("HH"); //America/Los_Angeles  Asia/Jakarta   America/Toronto
+  let time = moment.tz("America/Los_Angeles").format("HH"); //America/Los_Angeles  Asia/Jakarta   America/Toronto
 
   let res = "🌉Buenas madrugadas";
 
