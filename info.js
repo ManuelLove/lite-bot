@@ -53,7 +53,7 @@ conn.sendMessage(m.chat, {image: imagen1, caption: stateRun, contextInfo:{ menti
 }
 
 if (command == 'owner' || command == 'creador' || command == 'contacto') {
-let vcard = `BEGIN:VCARD\nVERSION:3.0\nN:; Eliasar YT👑;;;\nFN: Eliasar YT\nORG: Eliasar YT👑\nTITLE:\nitem1.TEL;waid=573012686632:+573012686632\nitem1.X-ABLabel:Propietario 👑\nX-WA-BIZ-DESCRIPTION:ᴇsᴄʀɪʙɪ sᴏʟᴏ ᴘᴏʀ ᴄᴏsᴀs ᴅᴇʟ ʙᴏᴛ.\nX-WA-BIZ-NAME:Owner 👑\nEND:VCARD`
+let vcard = `BEGIN:VCARD\nVERSION:3.0\nN:; Techfix Solutions👑;;;\nFN: Techfix Solutions\nORG: Techfix Solutions👑\nTITLE:\nitem1.TEL;waid=573012686632:+573012686632\nitem1.X-ABLabel:Propietario 👑\nX-WA-BIZ-DESCRIPTION:ᴇsᴄʀɪʙɪ sᴏʟᴏ ᴘᴏʀ ᴄᴏsᴀs ᴅᴇʟ ʙᴏᴛ.\nX-WA-BIZ-NAME:Owner 👑\nEND:VCARD`
 let a = await conn.sendMessage(m.chat, { contacts: { displayName: 'ansi 👑', contacts: [{ vcard }] }}, {quoted: m})
 await conn.sendMessage(m.chat, { text : `${lenguaje['smsWel']()} @${sender.split("@")[0]}, ${lenguaje.info.text12}\n\n${fb}`, mentions: [sender]}, { quoted: a, ephemeralExpiration: 24*60*100, disappearingMessagesInChat: 24*60*100})
 }
