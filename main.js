@@ -1327,7 +1327,7 @@ return;
 }
 //ARRANCA LA DIVERSIÓN   
 switch (prefix && command) {
-case 'ytbuscar': {
+case 'ytsearch': {
   updatePopularCommand(command); // Mencatat command
   if (!text) return m.reply(`Ejemplo : ${prefix + command} historia de anime`);
   if (!firely(m, '⏳ Tratamiento..')) return; // Jika limit habis, proses berhenti di sini
@@ -1336,9 +1336,6 @@ case 'ytbuscar': {
     // Cari hasil di YouTube menggunakan API
     let search = await yts(text);
     if (!search.all.length) return m.reply("¡No se encontraron resultados de búsqueda!");
-
-    // Enviar un mensaje de depuración antes de procesar la respuesta
-    m.reply("🔍 Buscando en YouTube, por favor espera...");
 
     // Batasi hasil pencarian ke 5 item teratas dan siapkan carousel card
     const carouselCards = await Promise.all(search.all.slice(0, 5).map(async (video, index) => ({
@@ -1358,17 +1355,17 @@ case 'ytbuscar': {
       nativeFlowMessage: {
         buttons: [
           {
-            "name": "cta_copy",
+            "name": "cta_url",
             "buttonParamsJson": JSON.stringify({
-            "display_text": "🎵MUSICA🎵",
-            "copy_code": `${prefix}ytmp3 ${video.url}`
+            "display_text": "📺 Ver Video",
+            "url": `${video.url}`
             })
           },
           {
             "name": "cta_copy",
             "buttonParamsJson": JSON.stringify({
-            "display_text": "📺VIDEO📺",
-            "copy_code": `${prefix}ytmp4 ${video.url}`
+            "display_text": "📋 Copiar URL",
+            "copy_code": `${video.url}`
             })
           }
         ]
@@ -1416,7 +1413,7 @@ case 'ytbuscar': {
 break;
 
 case 'ytios': {
-    console.log("✅ Ejecutando ytbuscar con término:", text);
+    console.log("✅ Ejecutando ytsearch con término:", text);
     if (!text) return m.reply("🔹 Debes ingresar un término de búsqueda.");
 
     let search = await yts(text);
@@ -1628,7 +1625,7 @@ break
 
 case 'yts':
 case 'playlist':
-case 'ytbuscar':
+case 'ytsearch':
 case 'ytios':
 case 'acortar':
 case 'google':
