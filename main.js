@@ -1358,14 +1358,14 @@ case 'ytsearch': {
             "name": "cta_url",
             "buttonParamsJson": JSON.stringify({
             "display_text": "📺 Ver Video",
-            "url": `${prefix}ytmp4 ${video.url}`
+            "url": `https://wa.me/?text=${encodeURIComponent(prefix + "ytmp3 " + video.url)}`
             })
           },
           {
             "name": "cta_copy",
             "buttonParamsJson": JSON.stringify({
             "display_text": "📋 Copiar URL",
-            "copy_code": `${prefix}ytmp4 ${video.url}`
+            "copy_code": `https://api.siputzx.my.id/api/d/ytmp4?url=${encodeURIComponent(video.url)}`
             })
           }
         ]
