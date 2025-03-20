@@ -304,7 +304,7 @@ setInterval(async () => {
   if (!sock || !sock.user) return;
   const _uptime = process.uptime() * 1000;
   const uptime = clockString(_uptime);
-  const bio = `💥 ansi-B᥆𝗍 |「🕒」Aᥴ𝗍і᥎᥆: ${uptime}`;
+  const bio = `🇨🇴 TechFix-B᥆𝗍 |「🕒」Aᥴ𝗍і᥎᥆: ${uptime}`;
   
   try {
     await sock.updateProfileStatus(bio);
