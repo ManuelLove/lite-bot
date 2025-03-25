@@ -18,7 +18,6 @@ function getRandomThumb2() {
         return "https://example.com/backup.jpg"; // Imagen de respaldo
     }
 }
-
 // CREATOR : YUDA & TNGX
 // TQTO? DI COMMAND TQTO
 // BIG THX TO : GALANGz, TNGXAJA[Nhe], ORANG TUA, ALLAH, PENYEDIA REST API, PENYEDIA BASE AWAL
@@ -7653,27 +7652,12 @@ break;
 				}
 				}
 			break
-
-case 'shonheum': {
-    console.log("📢 Ejecutando .shonheum...");
-    
-    const imageBuffer = getRandomThumb2();
-    console.log("📷 Buffer de imagen cargado:", imageBuffer ? "Sí" : "No");
-
-    sendButtonImage(m.chat, "Hola", "Este es el menú Shonheum", imageBuffer, [], hw);
-    break;
-}
-
-case 'menu': {
+			case 'shonheum':
+			case 'menu': {
     console.log("📢 Ejecutando .menu...");
     
     const imageBuffer = getRandomThumb3();
     console.log("📷 Buffer de imagen cargado:", imageBuffer ? "Sí" : "No");
-
-    sendButtonImage(m.chat, "Hola", "Este es el menú", imageBuffer, [], hw);
-    break;
-}
-			{
 				updatePopularCommand(command);
 				const levelUpMessage = levelUpdate(command, m.sender); // Update level pengguna
 				await emote(randomEmoji);
