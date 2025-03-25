@@ -1,3 +1,24 @@
+
+function getRandomThumb3() {
+    const path = "src/thum3/shoNhe.jpg";
+    if (fs.existsSync(path)) {
+        return fs.readFileSync(path);
+    } else {
+        console.log(`⚠️ ERROR: No se encontró la imagen en ${path}`);
+        return null;
+    }
+}
+
+function getRandomThumb2() {
+    const path = "src/thum2/shoNhe.jpg";
+    if (fs.existsSync(path)) {
+        return fs.readFileSync(path);
+    } else {
+        console.log(`⚠️ ERROR: No se encontró la imagen en ${path}`);
+        return null;
+    }
+}
+
 // CREATOR : YUDA & TNGX
 // TQTO? DI COMMAND TQTO
 // BIG THX TO : GALANGz, TNGXAJA[Nhe], ORANG TUA, ALLAH, PENYEDIA REST API, PENYEDIA BASE AWAL
