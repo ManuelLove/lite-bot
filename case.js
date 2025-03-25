@@ -1,6 +1,4 @@
 
-const fs = require('fs');
-
 function getRandomThumb3() {
     const path = "src/thum3/shoNhe.jpg";
     if (fs.existsSync(path)) {
