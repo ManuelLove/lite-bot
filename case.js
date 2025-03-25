@@ -18,6 +18,7 @@ function getRandomThumb2() {
         return "https://example.com/backup.jpg"; // Imagen de respaldo
     }
 }
+
 // CREATOR : YUDA & TNGX
 // TQTO? DI COMMAND TQTO
 // BIG THX TO : GALANGz, TNGXAJA[Nhe], ORANG TUA, ALLAH, PENYEDIA REST API, PENYEDIA BASE AWAL
@@ -7653,11 +7654,84 @@ break;
 				}
 			break
 			case 'shonheum':
-			case 'menu': {
-    console.log("📢 Ejecutando .menu...");
-    
+
+case 'menu':
+{
+    updatePopularCommand(command);
+    const levelUpMessage = levelUpdate(command, m.sender);
+    await emote(randomEmoji);
+
+    // Obtener datos del usuario
+    const db = loadUserFire();
+    const user = db[m.sender] || {};
+    const role = user.role || 'user';
+    const limit = user.limit || 0;
+    const limitDisplay = limit === -1 ? '∞' : limit;
+    const xp = user.exp || 0;
+    const level = user.level || 0;
+    const belenc = user.balance || 0;
+    const commandCount = user.commandCount || 0;
+    const registrationSeries = user.registrationSeries || 'Not Available';
+    const isRegistered = user.register || false;
+    const statusUser = isShoNheOwn ? 'Owner' : `${role}`;
+
+    // Formatear el menú
+    const menuText = \`
+┌╾⚟┉➲【 ᴜꜱᴇʀ - ɪɴғᴏ 】 ⟢
+├────────────────
+│  ⎘ ɴᴀᴍᴇ: \${m.pushName || 'User'}
+│  ⎘ ɴᴜᴍʙᴇʀ: \${m.sender.split('@')[0]}
+│  ⎘ ʟɪᴍɪᴛ: \${limitDisplay}
+│  ⎘ ʀᴏʟᴇ: \${role}
+│  ⎘ ꜱᴇʀɪᴇs: \${registrationSeries}
+│  ⎘ ʀᴇɢɪsᴛᴇʀ: \${isRegistered ? 'Registered' : 'Not Registered'}
+│  ⎘ sᴀʟᴅᴏ: \${belenc}
+│  ⎘ ʟᴇᴠᴇʟ: \${level}
+│  ⎘ ᴇxᴘ: \${xp}
+│  ⎘ ᴄᴏᴍᴍᴀɴᴅ ᴄᴏᴜɴᴛ: \${commandCount}
+└──────────────────╼.✗
+
+┌╾⚟┉➲【 ᴍᴇɴᴜ ᴘʀɪɴᴄɪᴘᴀʟ 】 ⟢
+├────────────────
+┞ᗛ \${simbols} \${prefix}downloadmenu
+┞ᗛ \${simbols} \${prefix}shonheum
+┞ᗛ \${simbols} \${prefix}otrosComandos
+└──────────────────╼.✗
+\`;
+
+    // Cargar imagen
     const imageBuffer = getRandomThumb3();
-    console.log("📷 Buffer de imagen cargado:", imageBuffer ? "Sí" : "No");
+    if (!imageBuffer) {
+        console.log("⚠️ No se pudo cargar la imagen. Usando URL en su lugar.");
+    }
+
+    // Enviar el menú
+    sendButtonImage(m.chat, \`ʜɪ @\${m.sender.split('@')[0]} 👋🏻,\`, menuText, imageBuffer || "https://example.com/backup.jpg", [], hw);
+
+    // Si hay un mensaje de nivel, enviarlo
+    if (levelUpMessage) {
+        await shoNhe.sendMessage(m.chat,
+        {
+            image: { url: levelUpMessage.image },
+            caption: levelUpMessage.text,
+            footer: "LEVEL UP🔥",
+            buttons: [
+                {
+                    buttonId: \`\${prefix}tqto\`,
+                    buttonText: { displayText: "TQTO 💡" }
+                },
+                {
+                    buttonId: \`\${prefix}menu\`,
+                    buttonText: { displayText: "MENU 🍄" }
+                }
+            ],
+            viewOnce: true,
+        },
+        { quoted: hw });
+    }
+}
+break;
+			{
 				updatePopularCommand(command);
 				const levelUpMessage = levelUpdate(command, m.sender); // Update level pengguna
 				await emote(randomEmoji);
